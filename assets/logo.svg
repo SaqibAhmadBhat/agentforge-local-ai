@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AgentForge logo">
+  <defs>
+    <linearGradient id="af-g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4f8cff"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <path d="M32 4 56 18v28L32 60 8 46V18Z" fill="#141821" stroke="url(#af-g)" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M35 14 21 35h10l-3 15 15-22H33Z" fill="url(#af-g)"/>
+</svg>
