@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AgentForge Local AI</title>
+  <link rel="icon" href="/static/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/app.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="/static/logo.svg" alt="" width="32" height="32">
+      <div>
+        <h1>AgentForge <span>Local AI</span></h1>
+        <p class="tagline">Run locally. Use tools intelligently. Keep your data under your control.</p>
+      </div>
+    </div>
+    <div class="runtime-pill" id="runtime-pill" data-state="checking" role="status" aria-live="polite">
+      <span class="dot" aria-hidden="true"></span><span id="runtime-text">Checking local runtime…</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="chat" aria-label="Conversation">
+      <div class="banner hidden" id="error-banner" role="alert"></div>
+      <div class="messages" id="messages">
+        <div class="empty" id="empty-state">
+          <h2>Ask a question, or let the agent use a tool</h2>
+          <p>Your message goes to the language model running in Ollama on this computer.
+             When the model asks for a tool, AgentForge validates the request and runs it locally.</p>
+          <div class="suggestions">
+            <button type="button" class="chip" data-prompt="What is 15% of 1240, plus 37.5?">Calculate 15% of 1240 + 37.5</button>
+            <button type="button" class="chip" data-prompt="Save a note called ideas with the text: prepare the viva demo.">Save a note</button>
+            <button type="button" class="chip" data-prompt="What notes do I have?">List my notes</button>
+            <button type="button" class="chip" data-prompt="What can you do?">What can you do?</button>
+          </div>
+        </div>
+      </div>
+      <form class="composer" id="composer">
+        <textarea id="input" rows="2" maxlength="4000" aria-label="Message"
+          placeholder="Message AgentForge…  (Enter to send, Shift+Enter for a new line)"></textarea>
+        <button type="submit" id="send" class="primary">Send</button>
+      </form>
+    </section>
+
+    <aside class="sidebar">
+      <section class="panel" aria-labelledby="runtime-heading">
+        <div class="panel-head">
+          <h3 id="runtime-heading">Runtime</h3>
+          <button type="button" id="recheck" class="ghost small">Re-check</button>
+        </div>
+        <dl class="kv" id="runtime-details"></dl>
+        <label class="field">Model
+          <select id="model-select" disabled><option>Loading…</option></select>
+        </label>
+        <ul class="problems" id="runtime-problems"></ul>
+        <button type="button" id="reset" class="ghost wide">New conversation</button>
+      </section>
+
+      <section class="panel" aria-labelledby="tool-heading">
+        <div class="panel-head"><h3 id="tool-heading">Run a tool directly</h3></div>
+        <p class="hint">Bypasses the model and uses the same validation as the agent.</p>
+        <label class="field">Tool <select id="tool-select"></select></label>
+        <div id="tool-fields"></div>
+        <button type="button" id="tool-run" class="secondary wide">Run tool</button>
+        <pre class="output hidden" id="tool-output"></pre>
+      </section>
+
+      <section class="panel" aria-labelledby="notes-heading">
+        <div class="panel-head">
+          <h3 id="notes-heading">Notes</h3>
+          <button type="button" id="notes-refresh" class="ghost small">Refresh</button>
+        </div>
+        <ul class="notes" id="notes-list"></ul>
+        <pre class="output hidden" id="note-view"></pre>
+      </section>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    AgentForge Local AI <span id="version"></span> · Ollama at <span id="ollama-url">—</span> · No cloud APIs, no telemetry
+  </footer>
+</body>
+</html>

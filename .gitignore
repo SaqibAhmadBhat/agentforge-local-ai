@@ -1,0 +1,41 @@
+# Python build and cache files
+__pycache__/
+*.py[cod]
+build/
+dist/
+wheels/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local configuration and secrets (only the example is committed)
+.env
+.env.*
+!.env.example
+
+# User data: AgentForge notes, and the original project's note folder
+data/
+sandbox/
+
+# Model weights and local model files (Ollama stores models outside the project)
+models/
+*.gguf
+*.safetensors
+*.bin
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Transfer bundles used while syncing this repository
+*.bundle

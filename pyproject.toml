@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentforge-local-ai"
+version = "1.0.0"
+description = "Privacy focused offline AI agent powered by small language models, with local inference, safe tool execution, and practical agent workflows."
+readme = "README.md"
+keywords = ["ai-agent", "offline-ai", "small-language-model", "ollama", "tool-calling", "agentic-ai"]
+license = "MIT"
+license-files = ["LICENSE", "docs/THIRD_PARTY_NOTICES.md"]
+authors = [
+    { name = "Saqib Ahmad Bhat", email = "saqibahmadbhat885@gmail.com" },
+]
+requires-python = ">=3.10"
+dependencies = [
+    "ollama>=0.6.2,<0.7",
+    "httpx>=0.27,<1",
+    "python-dotenv>=1.0,<2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10"]
+
+[project.urls]
+Repository = "https://github.com/SaqibAhmadBhat/agentforge-local-ai"
+Upstream = "https://github.com/BhargavaKandala/Fully-Offline-AI-agent-using-SLM"
+
+[project.scripts]
+agentforge = "agentforge.cli:main"
+
+[tool.setuptools]
+packages = ["agentforge"]
+
+[tool.setuptools.package-data]
+agentforge = ["static/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = [
+    "live: needs a running Ollama server with the configured model (set AGENTFORGE_LIVE_TESTS=1)",
+    "ui: drives the web interface in a headless browser (needs the optional playwright package)",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S"]
+ignore = ["S101"]  # assert is how pytest tests are written
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S", "B017"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
